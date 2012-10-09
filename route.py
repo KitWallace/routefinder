@@ -18,11 +18,11 @@ class Waypoint(Persistant) :
       polar_to_waypoint = gps.latlong.gc_polar_to(self.latlong) 
       waypoint_bearing = round(polar_to_waypoint.bearing,0)
       relative_bearing = (waypoint_bearing - compass.bearing + 360 ) % 360
-      distance = round(polar_to_waypoint.distance,2)
+      distance = convert.convert_value(round(polar_to_waypoint.distance,2),"Nm","km")
       if distance > 1 :
-          dtext =str(distance) + " Nm"
+          dtext =str(distance) + " Km"
       else :
-          dtext = str(convert.convert_value(distance,"Nm","m")) + " m"
+          dtext = str(convert.convert_value(distance,"km","m")) + " m"
       dest_text = ( self.name + " is " + dtext + " away at " + str(degrees_to_hours(relative_bearing)) + " oclock "
                   +  str(relative_bearing) + " degrees."
                  )
