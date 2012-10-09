@@ -1,0 +1,33 @@
+<menu name="tracker" title="GPS Tracker menu version2">
+       <item title="Route">
+               <item id="route" title="Route" action='get("route").current_waypoint.name'>
+                     <item action='get("route").current_waypoint.location' />
+                     <item action='get("route").current_waypoint.speed_and_direction' />
+                     <item action='get("route").current_waypoint.relative_speed_and_direction' />
+                     <item action='get("route").current_waypoint.text' />
+               </item>
+               <item title="Increment" action='get("route").increment(1).current_waypoint.name' next="route"/>
+               <item title="Decrement" action='get("route").decrement(1).current_waypoint.name' next="route"/>
+        </item>
+        <item title="Logger"  action='"Logging every " + str(get("lograte").value) + " seconds is " + get("logsw").status' >
+            <item id="log" title="Logging"  action='"Logging is "+ get("logsw").status'>    
+               <item action='"Logging is now " +get("logsw").toggle().status' next="log"/>  
+            </item> 
+            <item title="Increase" action='"Logging every " + str(get("lograte").increment().value) + " seconds"' next="log"/>
+            <item title="Decrease" action='"Logging every " + str(get("lograte").decrement().value) + " seconds"' next="log"/>
+        </item>
+        <item title="Position"  action='"Position Talker is "+ get("positiontalksw").status' >
+            <item id="position" title="Position"  action='"Position Talker is "+ get("positiontalksw").status' >    
+               <item action='"Position Talker is now " +get("positiontalksw").toggle().status' next="position" />  
+            </item> 
+            <item title="Increase" action='"Position report every " + str(get("positiontalkrate").increment().value) + " seconds"'
+                  next="position"/>
+            <item title="Decrease" action='"Position report every " + str(get("positiontalkrate").decrement().value) + " seconds"' 
+                  next="position"/>
+        </item>
+         <item title="Calibrate">
+              <item id="compass_cal" title="Compass" action='"Device Bearing is " + str(get("compass").device_bearing) + " Compass Bearing " +  str(get("compass").bearing)'>
+                     <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)' next="compass_cal"/>
+              </item>
+        </item>
+</menu>
