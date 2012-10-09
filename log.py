@@ -35,14 +35,11 @@ class Log(Persistant) :
          latitude = data[1]
          longitude = data[2]
          altitude = data[3]
-         message = ""
-         try :
-            message = data[4]
-         except :
-            pass
+         sog = data[4]
+         cog = data[5]
          kml+= "<Placemark>"
 
-         kml+= "<description>" + time[0:5] + " " + str(round(float(latitude),4)) + "," + str(round(float(longitude),4)) + "<br/>" + message  + "</description>\n"
+         kml+= "<description>" + time[0:5] + " " + str(round(float(latitude),4)) + "," + str(round(float(longitude),4))  + "</description>\n"
 
          kml+= "<TimeStamp><when>"+ts+"</when></TimeStamp>\n"
          kml+= "<Point><coordinates>" + longitude + "," + latitude + "," + altitude+"</coordinates></Point>\n"
