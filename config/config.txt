@@ -1,0 +1,10 @@
+system=metric
+menu=router
+log_name=t5
+log_rate=60
+route_name=lunch
+talk_rate=60
+talk_on=no
+compass_deviation=-2.2148
+compass_update_rate=5
+

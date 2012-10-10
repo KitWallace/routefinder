@@ -1,8 +1,9 @@
 #!/usr/bin/python
 from persistant import *
 import compass
-
-compass = compass.Compass("compass",-2.2148)
-compass.update(5)
+from config import Config
+c = Config()
+compass = compass.Compass("compass",float(c.compass_deviation))
+compass.update(float(c.compass_update_rate))
 
     

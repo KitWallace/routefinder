@@ -3,9 +3,12 @@ import time,sys
 
 import speak
 from persistant import *
-
-Number("positiontalkrate",step=10,initial=60)
-Switch("positiontalksw").toggle()
+from config import Config
+c = Config()
+Number("positiontalkrate",step=10,initial=float(c.talk_rate))
+Switch("positiontalksw")
+if c.talk_status == "off" :
+   Switch("positiontalksw").toggle()
 
 while True :
    if get("positiontalksw").on :

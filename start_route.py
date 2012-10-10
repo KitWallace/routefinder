@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import sys
 import route
-routename = sys.argv[1]
-route.Route(routename) 
+from config import Config
+
+c = Config()
+route.Route(c.route_name) 
 
