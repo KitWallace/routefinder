@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
-from persistant import get
-import log
+from track import *
 import sys
+import convert
 
 name = sys.argv[1]
-log = get(name)
-kml = log.kml()
-print kml
+track = Track(name)
+#k ml = track.kml()
+distance = track.track_length()
+
+print distance, convert.convert_value(distance[0],"Nm","miles")

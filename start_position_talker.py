@@ -1,9 +1,10 @@
-#!/usr/bin/env python
-import time,sys
+#!/usr/bin/python
 
+import time,sys
 import speak
 from persistant import *
 from config import Config
+
 c = Config()
 Number("positiontalkrate",step=10,initial=float(c.talk_rate))
 Switch("positiontalksw")

@@ -1,10 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys, time, termios
 import speak
 
 from menu import *
 from persistant import *
+from config import Config
 
 def visit(item) :
    action = item.getAttribute('action')
@@ -16,7 +17,7 @@ def visit(item) :
    speak.say(mtext)
    print (text)
    
-name = sys.argv[1]
-menu = Menu(name)
+c = Config()
+menu = Menu(c.menu)
 menu.run(visit) 
 
