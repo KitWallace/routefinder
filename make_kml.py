@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 
-from track import *
 import sys
-import convert
+from route import *
+from track import *
 
-name = sys.argv[1]
-track = Track(name)
-#k ml = track.kml()
-distance = track.track_length()
+routename = sys.argv[1]
+trackname = sys.argv[2]
+track = Track(trackname)
+route = Route(routename)
 
-print distance, convert.convert_value(distance[0],"Nm","miles")
+kml = "<kml xmlns='http://www.opengis.net/kml/2.2'><Folder>\n"
+kml += track.as_kml()
+kml += route.as_kml()
+kml += "</Folder></kml>"
+print kml

@@ -65,6 +65,13 @@ class Waypoint(Persistant) :
           vmg_text = "you are stationary."
       return vmg_text
 
+   def as_kml(self) : 
+         kml = "<Placemark><name>"+ self.name + "</name>\n"
+         kml+= "<description>" + self.text  + "</description>\n"
+         kml+= "<Point><coordinates>"+ str(self.latlong.longitude) + "," + str(self.latlong.latitude) + ",0" + "</coordinates></Point>\n"
+         kml+= "</Placemark>\n"  
+         return kml
+
 class Route(Number) :
    def __init__(self,name) :
      self.name = "route"
@@ -83,6 +90,13 @@ class Route(Number) :
      self.max = len(self.waypoints) - 1
      self.val = 0
      self.put()
+
+   def as_kml(self) : 
+     kml="<Folder><name>" + self.name +"</name>"
+     for waypoint in self.waypoints :
+        kml+= waypoint.as_kml()
+     kml+= "</Folder>"
+     return kml
 
    @property
    def current_waypoint(self) :

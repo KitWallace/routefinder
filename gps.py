@@ -40,7 +40,7 @@ class GPS(Persistant) :
       time =data[1]
       h = time[0:2]
       m = time[2:4]
-      s = time[4:len(time)]
+      s = time[4:6]  # just the whole seconds
     
       date= data[9]
       day = date[0:2]

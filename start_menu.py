@@ -7,6 +7,8 @@ from menu import *
 from persistant import *
 from config import Config
 
+c = Config()
+
 def visit(item) :
    action = item.getAttribute('action')
    if action == "" :
@@ -14,10 +16,9 @@ def visit(item) :
    else : 
       text = eval(action)
    mtext = speak.expand(text,speak.tracker_substitutes)
-   speak.say(mtext)
+   speak.say(mtext,c.menu_voice)
    print (text)
    
-c = Config()
 menu = Menu(c.menu)
 menu.run(visit) 
 

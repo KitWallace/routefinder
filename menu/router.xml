@@ -26,8 +26,13 @@
                   next="position"/>
         </item>
          <item title="Calibrate">
-              <item id="compass_cal" title="Compass" action='"Device Bearing is " + str(get("compass").device_bearing) + " Compass Bearing " +  str(get("compass").bearing)'>
-                     <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)' next="compass_cal"/>
-              </item>
+              <item id="compass_cal" title="Compass Calibration" />
+              <item title="Compass Bearings" action='"Device Bearing is " + str(get("compass").device_bearing) + " Compass Bearing " +  str(get("compass").bearing)'  next="compass_cal" />
+              <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)'   next="compass_cal" />
+
+        </item>
+        <item title="Clock">
+            <item title="time" action='"The Raspberry Pi time is " + time.strftime("%H %M")'/>
+            <item title="date" action='time.strftime("%A %B %d")'/>
         </item>
 </menu>
