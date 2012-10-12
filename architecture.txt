@@ -1,0 +1,71 @@
+Application architecture
+
+Reflection
+reflect.py  - defines a Reflect class, an instance of which prints an object
+view_object.py a script with one command-line argument, the name of the pkled object to print
+
+Conversion
+convert.py defines constants and a general function to convert from one unit to another
+
+Text-to-speech
+speak.py  defines functions to use espeak to vocalise text and to expand abbreviations
+
+persistance
+persistant.py  defines a Persistant class
+   Switch  a class for a simple on/off switch
+   Number - a class for a value which can be incremented and decremented - used for controllong rates and indexing
+   Option - a class which allows the selection of an option
+
+Configuration
+conf.pg  - Config class loads a config file 
+config/config.txt   - file in the format of lines - each is name=value
+
+GPS
+gps.py  defines a GPS class to receive NMEA sentences and save the current gps data every 1 second
+geo.py defines a LatLong class which contains distance and bearing functions and other conversion functions
+start_gps.py  script to create the gps object and start it monitoring 
+obj/gps.pkl   the pkled gps object
+
+Compass
+Adafruit_I2c.py   the Adafruit I2C API
+Devantech_CMPS10  defines a CMPS10 class to interface to the CMPS10 chip
+compass.py  defines a compass class that gathers magnetic bearing data and converts to a true bearing
+start_compass.py  script to create a Compass object called 'compass' and start it monitoring every 1 seconds
+obj/compass.pkl the pkled compass object
+
+Logging
+log.py  a logger class with a monitor function which collects GPS and compass data periodically and logs to a serial file
+start_logger.py script to create a logg object and  start logging
+obj/log_sw.pkl  the switch to turn logging on or off
+obj/log_rate.pkl  the rate in seconds at which logging occurs
+obj/log.pkl  the log itself
+log/name.txt   the log called name
+
+Route 
+route.py  defines  Route and Waypoint classes
+start_route.py  starts the route object
+obj/route.pkl  route and its waypoints
+
+Track 
+track.py  Track class processed a log
+make_kml.py  takes a route and a track and generates kml
+
+Talker
+start_talker.py  start up the position talker
+obj/talk_sw.pkl  switch to turn the talker on and off
+obj/talk_rate.pkl  counter to control the rate of talking
+obj/talk_mode.pkl  the type of information talked
+
+routes/name.txt  set of waypoints as "|"  delimited data: name, latitude,longitude, time, description
+
+Menu
+presenter.py class Presenter interprets presenter keypresses as cursor movements
+menu.py  class Menu describes a hierarchical menu and its actions
+xmlutils.py  support functions to modify the Menu XML code
+start_menu.py  start up a menu - parameter is a menu name
+menu/name.xml  a menu
+
+Start
+start.sh   - get the separate processes running
+
+.profile  - edited to run start.sh on boot after auto login to pi

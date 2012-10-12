@@ -1,13 +1,29 @@
-<menu name="tracker" title="GPS Tracker menu version2">
+<menu name="tracker" title="GPS Tracker menu version 4">
        <item title="Route">
-               <item id="route" title="Route" action='get("route").current_waypoint.name'>
-                     <item action='get("route").current_waypoint.location' />
-                     <item action='get("route").current_waypoint.speed_and_direction' />
-                     <item action='get("route").current_waypoint.relative_speed_and_direction' />
+               <item id="current" title="Current Waypoint" action='"Current Waypoint is " +get("route").current_waypoint.name'>
+                     <item action='get("route").current_waypoint.relative_location' />
+                     <item action='get("route").current_waypoint.relative_velocity' />
                      <item action='get("route").current_waypoint.text' />
+                     <item action='get("route").current_waypoint.location' />
                </item>
-               <item title="Increment" action='get("route").increment(1).current_waypoint.name' next="route"/>
-               <item title="Decrement" action='get("route").decrement(1).current_waypoint.name' next="route"/>
+                  <item title="Next" action='"Next is "+get("route").next.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").next).name'  next="current" />
+                  </item>
+                  <item title="Last"  action='"Last is "+ get("route").last.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").last).name' next="current" />
+                  </item>
+                  <item title="Nearest" action='"Nearest is " + get("route").nearest.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").nearest).name' next="current" />
+                  </item>
+                  <item title="Earliest" action='"Earliest is " + get("route").earliest.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").earliest).name' next="current" />
+                  </item>
+                  <item title="First" action='"First is " +get("route").first.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").first).name' next="current"  />
+                  </item>
+                  <item title="Previous" action='"Previous is " + get("route").previous.name'>
+                      <item action='"Current now " + get("route").set_current(get("route").previous).name' next="current" />
+                  </item>
         </item>
         <item title="Logger"  action='"Logging every " + str(get("lograte").value) + " seconds is " + get("logsw").status' >
             <item id="log" title="Logging"  action='"Logging is "+ get("logsw").status'>    
@@ -16,23 +32,29 @@
             <item title="Increase" action='"Logging every " + str(get("lograte").increment().value) + " seconds"' next="log"/>
             <item title="Decrease" action='"Logging every " + str(get("lograte").decrement().value) + " seconds"' next="log"/>
         </item>
-        <item title="Position"  action='"Position Talker is "+ get("positiontalksw").status' >
-            <item id="position" title="Position"  action='"Position Talker is "+ get("positiontalksw").status' >    
-               <item action='"Position Talker is now " +get("positiontalksw").toggle().status' next="position" />  
+        <item title="Talker" id="talker"  action='"Talker is "+ get("talk_sw").status + " reporting " + get("talk_mode").value' >
+            <item title="Talker Status"  >    
+               <item action='"Talker is now " + get("talk_sw").toggle().status' />  
             </item> 
-            <item title="Increase" action='"Position report every " + str(get("positiontalkrate").increment().value) + " seconds"'
-                  next="position"/>
-            <item title="Decrease" action='"Position report every " + str(get("positiontalkrate").decrement().value) + " seconds"' 
-                  next="position"/>
-        </item>
+            <item title="Talk Rate">
+                 <item title="Increase" action='"report every " + str(get("talk_rate").increment().value) + " seconds"' />
+                 <item title="Decrease" action='"report every " + str(get("talk_rate").decrement().value) + " seconds"' />
+            </item>
+            <item title="Talk Mode">
+                <item title="Next" action='"report " + str(get("talk_mode").increment().value)' />
+            </item>
+         </item>
          <item title="Calibrate">
               <item id="compass_cal" title="Compass Calibration" />
               <item title="Compass Bearings" action='"Device Bearing is " + str(get("compass").device_bearing) + " Compass Bearing " +  str(get("compass").bearing)'  next="compass_cal" />
-              <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)'   next="compass_cal" />
+              <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)'  next="compass_cal" />
 
         </item>
-        <item title="Clock">
-            <item title="time" action='"The Raspberry Pi time is " + time.strftime("%H %M")'/>
-            <item title="date" action='time.strftime("%A %B %d")'/>
+        <item title="Current Data" >
+            <item title="time"  action='"Time is " + date_time.say_time() '/>
+            <item title="date" action='"Date is " + date_time.say_date()' />
+            <item title="velocity" action='get("gps").velocity' />
+            <item title="location" action='get("gps").location' />
+            <item title="heading" action='"Heading " +str(get("compass").bearing)' />
         </item>
 </menu>

@@ -1,3 +1,4 @@
+from persistant import *
 class Reflect:
  """ An object that use reflection """
 
@@ -20,6 +21,8 @@ class Reflect:
    attr = getattr(self.obj,name)
    if not callable(attr) and not (name[0:2] == "__"):
     print name,':',attr
+    if isinstance(attr,Persistant) :
+       Reflect(attr).print_attributes()
 
  def print_all(self):
   """ calls all the methods of this object """

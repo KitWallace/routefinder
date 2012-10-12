@@ -2,7 +2,7 @@
 
 import math, serial
 from persistant import *
-from geo import LatLong
+import geo, convert
 
 class GPS(Persistant) :
 
@@ -63,9 +63,16 @@ class GPS(Persistant) :
 
   def update_with_GGA(self, sent) :
     data = sent.split(",")
-    self.altitude = data[9]
-    self.satellites = data[7]
-    self.HDOP = data[8]
+    try :
+      altitude = float(data[9])
+      satelites = int(data[7])
+      HDOP = float(data[8])
+      #  conversion have worked
+      self.altitude = altitude
+      self.satellites = satelites
+      self.HDOP = HDOP
+    except :
+      pass
     return self
 
   def update(self,port) :   
@@ -80,10 +87,21 @@ class GPS(Persistant) :
 
   @property
   def latlong(self) :
-    return LatLong(self.latitude,self.longitude)
+    return geo.LatLong(self.latitude,self.longitude)
+
+  @property
+  def location(self) :
+    return " Latitude " + str(round(self.latitude,2)) + ", " + " Longitude " + str(round(self.longitude,2))
+
+  @property
+  def velocity (self) :
+      speed = round(convert.value(self.speedOverGround,"kt","kph"),1)
+      course = int(self.courseOverGround)
+      points = geo.degrees_to_compass_point(course)
+      string = "Speed is "+ str(speed) + " kph " + " at " +  str(course) + " degrees " + " towards " + points
+      return string
 
   def __str__(self) :
     return ",".join((self.dateTime,str(round(self.latitude,5)),str(round(self.longitude,5)),str(self.altitude),
          str(self.speedOverGround),str(self.courseOverGround)))
 
- 

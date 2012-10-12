@@ -1,10 +1,12 @@
 system=metric
 menu=router
-log_name=t5
-log_rate=60
-route_name=lunch
+log_name=hackspace
+log_rate=20
+route_name=hackspace
 talk_rate=60
-talk_on=no
+talk_status=off
+talk_voice=en+f2
 compass_deviation=-2.2148
 compass_update_rate=5
-
+menu_voice=en+m2
+barometer_altitude=65

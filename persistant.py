@@ -101,7 +101,7 @@ class Number(Persistant) :
    
     @property
     def value(self) :
-      return self.val
+      return int(self.val)
 
 class Option(Persistant) :
     def __init__(self,name,choices) :
@@ -110,7 +110,7 @@ class Option(Persistant) :
       self.initial = 0
       self.step = 1
       self.min = 0
-      self.max = len(chioces) - 1
+      self.max = len(choices) - 1
       self.val = 0
       self.wrap = True
       self.put()

@@ -5,7 +5,7 @@ echo "compass started"
 sleep 1 # let the devices settle
 ./start_route.py &
 echo "route started"
-./start_position_talker.py  2> /dev/null &
+./start_talker.py  2> /dev/null &
 echo "position talker started"
 ./start_logger.py  &
 echo "logging started"

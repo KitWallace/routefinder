@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 conversions = {'kt': {'mph' : 1.15077945,'mps':  0.514444444 ,"kph" : 1.85200 },  
                "mb" : {'hPa' : 1.0, "inchHg" :  29.529983071E-3},
@@ -7,7 +7,7 @@ conversions = {'kt': {'mph' : 1.15077945,'mps':  0.514444444 ,"kph" : 1.85200 },
               }
 
 
-def convert_value(value, fromUnit, toUnit) :
+def value(value, fromUnit, toUnit) :
     try :
         factor = conversions[fromUnit][toUnit]
         return value * factor

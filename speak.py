@@ -2,7 +2,7 @@ import subprocess
 
 tracker_substitutes = {
      "W":"West","N":"North","S":"South","E":"East",
-     "km/h":"kilometers per hour","C":"Celsius","mph":"miles per hours", "kts": "knots",
+     "kph":"kilometers per hour","C":"Celsius","mph":"miles per hours", "kts": "knots",
      "Nm":"Nautical Miles", "m" :"metres", "km": "kilometres",
      "Mon":"Monday", "Tue":"Tuesday", "Wed":"Wednesday", "Thu":"Thursday", 
      "Fri":"Friday", "Sat":"Saturday", "Sun":"Sunday",
@@ -12,8 +12,8 @@ tracker_substitutes = {
      "%":"percent"
      }
 
-def say (text):
-    command = "echo '" + text + "'| espeak -v en+m2 -m"
+def say (text,voice="en+m2"):
+    command = "echo '" + text + "'| espeak -v " + voice +" -m"
     subprocess.call(command,shell=True)
 
 def play(file) :

@@ -15,7 +15,7 @@ class Compass(Persistant) :
 
    @property 
    def bearing(self) :
-       return round (( self.device_bearing + self.declination - get("compassoffset").value  + 360) % 360, 0)
+       return int(round (( self.device_bearing + self.declination - get("compassoffset").value  + 360) % 360, 0))
    
    def zero(self) :
        offset = get("compassoffset")

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from geo import *
+import geo, convert
 
 class Track (object) :
    def __init__(self,name) :
@@ -14,34 +14,37 @@ class Track (object) :
       self.file = open("log/"+self.name+".txt","r")
       for line in self.file.readlines():
          if line == "":
-           continue
+            continue
          data = line.strip().split(",")
-         latitude = float(data[1])
-         longitude = float(data[2])
-         if last is None :
-             last = LatLong(latitude,longitude)
-             start = data[0]
-         else:
-             next =  LatLong(latitude,longitude)
-             distance += last.gc_distance(next)
-             last = next
-      end = data[0]
+         if data[0] == "gps" :
+            latitude = float(data[2])
+            longitude = float(data[3])
+            if last is None :
+               last = geo.LatLong(latitude,longitude)
+               start = data[1]
+            else:
+               next =  geo.LatLong(latitude,longitude)
+               distance += last.gc_distance(next)
+               last = next
+               end = data[1]
       return (distance, start, end)
     
    def as_kml(self) :
-       distance = self.length()
+       distance = convert.value(self.length()[0],"Nm","km")
        kml = "<Placemark><name>" + self.name + "</name>"
-       kml += "<description>" + "Length along path " +  str(distance[0]) + " Nm" + "</description>"
+       kml += "<description>" + "Length along path " +  str(distance) + " km" + "</description>"
        kml += "<LineString><altitudeMode>absolute</altitudeMode><coordinates>"
        self.file = open("log/"+self.name+".txt","r")
        for line in self.file.readlines():
           if line == "":
              continue
           data = line.strip().split(",")
-          latitude = data[1]
-          longitude = data[2]
-          altitude = data[3]
-          kml+=  str(round(float(longitude),4))  + "," + str(round(float(latitude),4)) +  "," + str(round(float(altitude),4)) + "\n"
+          if data[0] == "gps" :
+              latitude = data[2]
+              longitude = data[3]
+              altitude = data[4]
+              coords =  str(round(float(longitude),4))  + "," + str(round(float(latitude),4)) +  "," + str(round(float(altitude),4))
+              kml+=  coords + "\n"
        kml += "</coordinates></LineString>"
        kml += "</Placemark>"
        return kml
