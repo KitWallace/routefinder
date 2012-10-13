@@ -9,7 +9,7 @@ tracker_substitutes = {
      "NNE":"Nor Nor East", "NE":"Nor East","ENE":"East Nor East","ESE":"East Sow East",
      "SE":"Sow East" ,"SSE" :"Sow Sow East", "SSW":"Sow Sow West","SW":"Sow West","WSW":"West Sow West",
      "WNW":"West Nor West","NW":"Nor West","NNW":"Nor Nor West",
-     "%":"percent"
+     "%":"percent","mb": "millibars"
      }
 
 def say (text,voice="en+m2"):

@@ -49,8 +49,8 @@ class Waypoint(Persistant) :
           string =str(distance) + " km"
       else :
           string = str(int(round(convert.value(distance,"km","m"),0))) + " m"
-      string = self.name + " is " + string + " away " +  geo.degrees_to_compass_point(waypoint_bearing) + ". "
-      string += " The Relative bearing is " + str(geo.degrees_to_hours(relative_bearing)) + " oh clock "     
+      string = self.name + " is " + string + " away " +  geo.degrees_to_compass_point(waypoint_bearing) + " . "
+      string += " The Relative bearing is " + str(geo.degrees_to_hours(relative_bearing)) + " oclock "     
       return string
 
    @property

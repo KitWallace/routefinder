@@ -2,4 +2,4 @@
 
 import gps
 position = gps.GPS("gps")
-position.update("/dev/ttyUSB0")
+position.monitor("/dev/ttyUSB0")

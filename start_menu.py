@@ -1,10 +1,9 @@
 #!/usr/bin/python
 
-import sys, time, termios
+import time, date_time
 import speak
-
-from menu import *
-from persistant import *
+from menu import Menu
+from persistant import get
 from config import Config
 
 c = Config()

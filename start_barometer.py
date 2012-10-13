@@ -4,7 +4,8 @@ from barometer import *
 from config import Config
 c = Config()
       
-baro = Barometer("baro",60,300,10800,float(c.barometer_altitude))
+baro = Barometer(int(c.barometer_update_rate),float(c.barometer_altitude))
+print "Barometer started"
 baro.monitor()
 
     

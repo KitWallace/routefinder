@@ -75,7 +75,7 @@ class GPS(Persistant) :
       pass
     return self
 
-  def update(self,port) :   
+  def monitor(self,port) :   
     s = serial.Serial(port,4800)
     while True:
        nmea = s.readline()
@@ -91,7 +91,9 @@ class GPS(Persistant) :
 
   @property
   def location(self) :
-    return " Latitude " + str(round(self.latitude,2)) + ", " + " Longitude " + str(round(self.longitude,2))
+      string =  (" latitude " + str(round(self.latitude,4)) + (" North " if self.latitude > 0 else " South " ) +
+      " , longitude "+ str(round(self.longitude,4)) + (" East " if self.longitude > 0 else " West " ))
+      return string
 
   @property
   def velocity (self) :

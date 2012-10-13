@@ -1,11 +1,23 @@
 #!/usr/bin/env python
 
+import time
 import geo, convert
+from persistant import get
 
 class Track (object) :
    def __init__(self,name) :
       self.name = name
-      self.file = open("log/"+self.name+".txt","r")
+ 
+   def monitor(self, switch_name, rate_name) :
+      file = open("log/"+self.name+".txt","a")
+      while True :
+         if get(switch_name).on :
+           gps = get("gps")
+           if gps.HDOP < 5.0 :   #  ignore low accuracy readings
+              file.write( ",".join(("gps",gps.dateTime,str(round(gps.latitude,5)),str(round(gps.longitude,5)),str(gps.altitude),
+                          str(gps.speedOverGround),str(gps.courseOverGround)))+"\n")
+              file.flush()
+         time.sleep(get(rate_name).value)
 
    def length(self) :
       last = None
@@ -43,7 +55,7 @@ class Track (object) :
               latitude = data[2]
               longitude = data[3]
               altitude = data[4]
-              coords =  str(round(float(longitude),4))  + "," + str(round(float(latitude),4)) +  "," + str(round(float(altitude),4))
+              coords =  ",".join((str(round(float(longitude),4)), str(round(float(latitude),4)) , str(round(float(altitude),4)) ))
               kml+=  coords + "\n"
        kml += "</coordinates></LineString>"
        kml += "</Placemark>"

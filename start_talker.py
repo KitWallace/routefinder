@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import time,sys
-import speak
+import speak,date_time
 from persistant import *
 from config import Config
 
@@ -30,7 +30,7 @@ while True :
           destination = get("route").current_waypoint
           string = destination.eta
       elif mode == "time" :
-          string = time.strftime("%H %M")
+          string = date_time.say_time()
       else :
           pass
       mstring = speak.expand(string,speak.tracker_substitutes)

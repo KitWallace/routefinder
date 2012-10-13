@@ -27,6 +27,9 @@ class Persistant(object) :
         pickle.dump(self,file)
         return self
 
+    @property
+    def ts_dateTime(self) :
+        return time.strftime("%Y-%m-%dT%H:%M:%S",time.localtime(self.ts))
 
 class Switch(Persistant) :
      

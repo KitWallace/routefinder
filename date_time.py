@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import datetime, time
+import moon
 
 def datetime_from_xs(xdt) :
    return datetime.datetime.strptime(xdt,"%Y-%m-%dT%H:%M:%S")
@@ -50,6 +51,10 @@ def say_time() :
           str(60 - minutes) + " minutes to " + str(int(hours) + 1)  )
 
     return string
+def say_moon_phase() :
+    m = moon.MoonPhase()
+    return ("""The moon is %s, %.1f%% illuminated, %.1f days old.""" %
+        (m.phase_text, m.illuminated * 100, m.age))
 
 if __name__ == "__main__" :
     dt = "2012-10-17T18:30:00"
@@ -59,3 +64,4 @@ if __name__ == "__main__" :
     print string(dt)
     print say_date()
     print say_time()
+    print say_moon_phase()
