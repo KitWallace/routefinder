@@ -1,4 +1,15 @@
 <menu name="tracker" title="GPS Tracker menu version 4">
+        <item title="Local Data" >
+            <item title="time"  action='"Time is " + date_time.say_time() '/>
+            <item title="date" action='"Date is " + date_time.say_date()' />
+            <item title="velocity" action='get("gps").velocity' />
+            <item title="location" action='get("gps").location' />
+            <item title="heading" action='"Heading " +str(get("compass").bearing) + " degrees True"' />
+            <item title="barometric pressure" action='"Barometric pressure " + str(int(round(get("barometer").pressure,0))) + " mb "' />
+            <item title="temperature" action='"Inside temperature " + str(get("barometer").temperature) + " degrees Celsius"' />
+            <item title="moon" action='date_time.say_moon_phase()' />
+        </item>
+
        <item title="Route">
                <item id="current" title="Current Waypoint" action='"Current Waypoint is " +get("route").current_waypoint.name'>
                      <item action='get("route").current_waypoint.relative_location' />
@@ -49,12 +60,5 @@
               <item title="Compass Bearings" action='"Device Bearing is " + str(get("compass").device_bearing) + " Compass Bearing " +  str(get("compass").bearing)'  next="compass_cal" />
               <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)'  next="compass_cal" />
 
-        </item>
-        <item title="Current Data" >
-            <item title="time"  action='"Time is " + date_time.say_time() '/>
-            <item title="date" action='"Date is " + date_time.say_date()' />
-            <item title="velocity" action='get("gps").velocity' />
-            <item title="location" action='get("gps").location' />
-            <item title="heading" action='"Heading " +str(get("compass").bearing)' />
         </item>
 </menu>
