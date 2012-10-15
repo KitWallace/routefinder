@@ -10,21 +10,11 @@
             <item title="forecast" action='"Forecast is " + get("weather").forecast()'/>
             <item title="moon" action='date_time.say_moon_phase()' />
         </item>
-       <item title="Books">
-               <item id="book" title="Current Book" action='"Current book is " +get("library").current_book.name'>
-                    <item title="Previous" action='get("library").previousline()' next="line"/>
-                    <item id="line" title="Line" action='get("library").nextline()' />
-                    <item title="First" action='get("library").firstline()' next="line"/>
-                 </item>
-               <item title="Next" action='"Next book is "+ get("library").set_current(get("library").next).name'  next="book" />        
-               <item title="Reading" action='"Reading is " + get("read_sw").status' >
-                        <item action='"Reading is now " + get("read_sw").toggle().status ' />
-               </item>
-       </item>
-       <item title="Route">
+        <item title="Route">
                <item id="waypoint" title="Current Waypoint" action='"Current Waypoint is " +get("route").current_waypoint.name'>
                      <item action='get("route").current_waypoint.relative_location' />
                      <item action='get("route").current_waypoint.relative_velocity' />
+                     <item action='get("route").current_waypoint.eta' />
                      <item action='get("route").current_waypoint.text' />
                      <item action='get("route").current_waypoint.location' />
                </item>
@@ -36,12 +26,12 @@
                       <item action='"Current now " + get("route").set_current(get("route").earliest).name' next="waypoint" />
                   </item>
         </item>
-        <item title="Logger"  action='"Logging every " + str(get("lograte").value) + " seconds is " + get("logsw").status' >
-            <item id="log" title="Logging"  action='"Logging is "+ get("logsw").status'>    
-               <item action='"Logging is now " +get("logsw").toggle().status' next="log"/>  
+        <item title="Logger"  action='"Logging every " + str(get("log_rate").value) + " seconds is " + get("logsw").status' >
+            <item id="log" title="Logging"  action='"Logging is "+ get("log_sw").status'>    
+               <item action='"Logging is now " +get("log_sw").toggle().status' next="log"/>  
             </item> 
-            <item title="Increase" action='"Logging every " + str(get("lograte").increment().value) + " seconds"' next="log"/>
-            <item title="Decrease" action='"Logging every " + str(get("lograte").decrement().value) + " seconds"' next="log"/>
+            <item title="Increase" action='"Logging every " + str(get("log_rate").increment().value) + " seconds"' next="log"/>
+            <item title="Decrease" action='"Logging every " + str(get("log_rate").decrement().value) + " seconds"' next="log"/>
         </item>
         <item title="Talker" id="talker"  action='"Talker is "+ get("talk_sw").status + " reporting " + get("talk_mode").value' >
             <item title="Talker Status"  >    
@@ -61,4 +51,16 @@
               <item title="Zero Compass" action ='"Offset is now " + str(get("compass").zero().offset)'  next="compass_cal" />
 
         </item>
+        <item title="Library">
+               <item id="book" title="Current Book" action='"Current book is " +get("library").current_book.name'>
+                    <item title="Previous" action='get("library").previousline()' next="line"/>
+                    <item id="line" title="Line" action='get("library").nextline()' />
+                    <item title="First" action='get("library").firstline()' next="line"/>
+                 </item>
+               <item title="Next" action='"Next book is "+ get("library").set_current(get("library").next).name'  next="book" />        
+               <item title="Reading" action='"Reading is " + get("read_sw").status' >
+                        <item action='"Reading is now " + get("read_sw").toggle().status ' />
+               </item>
+       </item>
+
 </menu>

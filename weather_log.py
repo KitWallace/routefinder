@@ -91,7 +91,7 @@ class Weather_Log(Persistant) :
         return trend_to_tendency(trend)
 
    def say_pressure(self) :
-     return str(int(round(self.pressure(),0))) + " mb . " + self.say_tendency()
+     return str(int(round(self.pressure(),0))) + " mb " + self.say_tendency()
 
    def say_tendency(self) :
      trend = self.trend(3)

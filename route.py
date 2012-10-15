@@ -19,10 +19,11 @@ class Waypoint(Persistant) :
      return geo.LatLong(self.latitude,self.longitude)
 
    @property
-   def location(self) :
-      string =  (" latitude " + str(round(self.latitude,4)) + (" North " if self.latitude > 0 else " South " ) +
-      " , longitude "+ str(round(self.longitude,4)) + (" East " if self.longitude > 0 else " West " ))
+   def location(self) :    
+      string =  ("Latitude " + geo.deg_to_dms(self.latitude,"lat") +
+      " , Longitude "+ geo.deg_to_dms(self.longitude,"long") )
       return string
+
 
    @property
    def distance(self) :

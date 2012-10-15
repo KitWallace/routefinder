@@ -71,16 +71,16 @@ serial
 - start_gps.py  script to create the gps object and start it monitoring 
 
 #### objects
-- gps
+- gps  GPS instance 
 
 ### Compass
 
 - Devantech_CMPS10.py   defines a CMPS10 class to interface to the CMPS10 chip
-- compass.py  defines a compass class that gathers magnetic bearing data and converts to a true bearing
+- compass.py  defines a Compass class that gathers magnetic bearing data and converts to a true bearing
 - start_compass.py  script to create a Compass object called 'compass' and start it monitoring every 1 seconds
 
 #### objects 
-- compass
+- compass Compass instance 
 - compassoffset  Number updated by calibrate so that bearings are relative to the direction of the mount 
 
 ### Track
