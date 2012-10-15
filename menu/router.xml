@@ -1,39 +1,39 @@
-<menu name="tracker" title="GPS Tracker menu version 4">
+<menu name="tracker" title="Talking Navigator Version 4">
         <item title="Local Data" >
             <item title="time"  action='"Time is " + date_time.say_time() '/>
             <item title="date" action='"Date is " + date_time.say_date()' />
             <item title="velocity" action='get("gps").velocity' />
             <item title="location" action='get("gps").location' />
             <item title="heading" action='"Heading " +str(get("compass").bearing) + " degrees True"' />
-            <item title="barometric pressure" action='"Barometric pressure " + str(int(round(get("barometer").pressure,0))) + " mb "' />
             <item title="temperature" action='"Inside temperature " + str(get("barometer").temperature) + " degrees Celsius"' />
+            <item title="barometric pressure" action='"Barometric pressure " + get("weather").say_pressure() ' />
+            <item title="forecast" action='"Forecast is " + get("weather").forecast()'/>
             <item title="moon" action='date_time.say_moon_phase()' />
         </item>
-
+       <item title="Books">
+               <item id="book" title="Current Book" action='"Current book is " +get("library").current_book.name'>
+                    <item title="Previous" action='get("library").previousline()' next="line"/>
+                    <item id="line" title="Line" action='get("library").nextline()' />
+                    <item title="First" action='get("library").firstline()' next="line"/>
+                 </item>
+               <item title="Next" action='"Next book is "+ get("library").set_current(get("library").next).name'  next="book" />        
+               <item title="Reading" action='"Reading is " + get("read_sw").status' >
+                        <item action='"Reading is now " + get("read_sw").toggle().status ' />
+               </item>
+       </item>
        <item title="Route">
-               <item id="current" title="Current Waypoint" action='"Current Waypoint is " +get("route").current_waypoint.name'>
+               <item id="waypoint" title="Current Waypoint" action='"Current Waypoint is " +get("route").current_waypoint.name'>
                      <item action='get("route").current_waypoint.relative_location' />
                      <item action='get("route").current_waypoint.relative_velocity' />
                      <item action='get("route").current_waypoint.text' />
                      <item action='get("route").current_waypoint.location' />
                </item>
-                  <item title="Next" action='"Next is "+get("route").next.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").next).name'  next="current" />
-                  </item>
-                  <item title="Last"  action='"Last is "+ get("route").last.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").last).name' next="current" />
-                  </item>
+                  <item title="Next" action='"Next is "+ get("route").set_current(get("route").next).name'  next="waypoint" />
                   <item title="Nearest" action='"Nearest is " + get("route").nearest.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").nearest).name' next="current" />
+                      <item action='"Current now " + get("route").set_current(get("route").nearest).name' next="waypoint" />
                   </item>
                   <item title="Earliest" action='"Earliest is " + get("route").earliest.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").earliest).name' next="current" />
-                  </item>
-                  <item title="First" action='"First is " +get("route").first.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").first).name' next="current"  />
-                  </item>
-                  <item title="Previous" action='"Previous is " + get("route").previous.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").previous).name' next="current" />
+                      <item action='"Current now " + get("route").set_current(get("route").earliest).name' next="waypoint" />
                   </item>
         </item>
         <item title="Logger"  action='"Logging every " + str(get("lograte").value) + " seconds is " + get("logsw").status' >

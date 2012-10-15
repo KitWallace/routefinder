@@ -9,7 +9,7 @@ R =  3437.74677   #nautical miles
 
 def deg_to_dms(dd,latlong) :
 
-   if (latlong == "lat"):
+   if (latlong == "long"):
       if (dd< 0) :
          dir = "West"
       else :
@@ -24,8 +24,8 @@ def deg_to_dms(dd,latlong) :
    deg = int(dd)
    min = (dd - deg ) * 60
    dmin = int(min)
-   sec = int((min - dmin) * 60)
-   return "".join([str(deg)," degrees ", str(dmin), "minutes ",str(sec) , " seconds ", dir])
+   sec = int(round((min - dmin) * 60,0))
+   return "".join([str(deg)," degrees ", str(dmin), " minutes ",str(sec) , " seconds ", dir])
 
 def degrees_to_compass_point(deg) :
    dp = deg + 11.25

@@ -9,11 +9,11 @@ tracker_substitutes = {
      "NNE":"Nor Nor East", "NE":"Nor East","ENE":"East Nor East","ESE":"East Sow East",
      "SE":"Sow East" ,"SSE" :"Sow Sow East", "SSW":"Sow Sow West","SW":"Sow West","WSW":"West Sow West",
      "WNW":"West Nor West","NW":"Nor West","NNW":"Nor Nor West",
-     "%":"percent","mb": "millibars"
+     "%":"percent","mb": "millibars", "I2C" : " I squared C" ,"A2D" : "Analog to Digital"
      }
 
-def say (text,voice="en+m2"):
-    command = "echo '" + text + "'| espeak -v " + voice +" -m"
+def say (text,voice="en+m2",speed=175):
+    command = "echo '" + text + "'| espeak -v " + voice +" -m" + " -s " + str(speed)
     subprocess.call(command,shell=True)
 
 def play(file) :

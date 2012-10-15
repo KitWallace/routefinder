@@ -5,7 +5,7 @@ from persistant import *
 from Devantech_CMPS10 import CMPS10
 
 class Compass(Persistant) :
-   def __init__(self, name, declination = 0, offset = 0) :
+   def __init__(self, name="compass", declination = 0, offset = 0) :
        self.name = name
        self.device = CMPS10()
        self.declination = declination

@@ -29,7 +29,7 @@ class Persistant(object) :
 
     @property
     def ts_dateTime(self) :
-        return time.strftime("%Y-%m-%dT%H:%M:%S",time.localtime(self.ts))
+        return time.strftime("%Y-%m-%dT%H:%M:%S",time.gmtime(self.ts))
 
 class Switch(Persistant) :
      

@@ -22,6 +22,9 @@ The functions of primary interest provided by this module are phase(),
 which gives you a variety of data on the status of the moon for a
 given date; and phase_hunt(), which given a date, finds the dates of
 the nearest full moon, new moon, etc.
+
+modified Oct 2012 by Chris Wallace to replace the older DateTime module with the datetime module
+
 """
 
 from math import sin, cos, floor, sqrt, pi, tan, atan # asin, atan2

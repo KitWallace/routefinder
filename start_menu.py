@@ -14,9 +14,10 @@ def visit(item) :
       text = item.getAttribute('title')
    else : 
       text = eval(action)
-   mtext = speak.expand(text,speak.tracker_substitutes)
-   speak.say(mtext,c.menu_voice)
-   print (text)
+   if text is not None :
+      mtext = speak.expand(text,speak.tracker_substitutes)
+      speak.say(mtext,c.menu_voice,c.menu_speed)
+      print (text)
    
 menu = Menu(c.menu)
 menu.run(visit) 

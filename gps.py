@@ -6,7 +6,7 @@ import geo, convert
 
 class GPS(Persistant) :
 
-  def __init__(self,name,latitude=0.0,longitude=0.0,altitude=0.0) :
+  def __init__(self,name="gps",latitude=0.0,longitude=0.0,altitude=0.0) :
     self.name=name
     self.latitude = latitude
     self.longitude = longitude
@@ -91,8 +91,9 @@ class GPS(Persistant) :
 
   @property
   def location(self) :
-      string =  (" latitude " + str(round(self.latitude,4)) + (" North " if self.latitude > 0 else " South " ) +
-      " , longitude "+ str(round(self.longitude,4)) + (" East " if self.longitude > 0 else " West " ))
+      
+      string =  ("Latitude " + geo.deg_to_dms(self.latitude,"lat") +
+      " , Longitude "+ geo.deg_to_dms(self.longitude,"long") )
       return string
 
   @property

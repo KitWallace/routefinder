@@ -40,15 +40,24 @@ def say_date() :
     return time.strftime("%A %B ") + str(day)
 
 def say_time() :
-    hours = int(time.strftime('%I'))
-    minutes = int(time.strftime('%M'))
+    t = time.localtime()
+    hours = t.tm_hour
+    minutes = t.tm_min
+
+    if minutes > 30 :
+       hours += 1
+
+    if hours <= 12 :
+       hours_str = str(hours) + " a.m."
+    elif hours > 12 :
+       hours_str = str(hours - 12) + " p.m."
     string = (
-          str(int(hours)) + " oh clock " if minutes == 0 else 
-          "a quarter past " + str(int(hours)) if minutes == 15 else 
-          "half past " + str(int(hours)) if minutes == 30 else 
-          str(minutes) + " minutes past " + str(int(hours)) if minutes < 30 else 
-          "a quarter to " +str (int(hours) + 1) if minutes == 45 else 
-          str(60 - minutes) + " minutes to " + str(int(hours) + 1)  )
+          hours_str + " precisely " if minutes == 0 else 
+          "a quarter past " + hours_str  if minutes == 15 else 
+          "half past " + hours_str if minutes == 30 else 
+          str(minutes) + " minute" + ("s" if minutes > 1 else "") + " past " + hours_str if minutes < 30 else 
+          "a quarter to " + hours_str if minutes == 45 else 
+          str(60 - minutes) + " minute" + ("s" if (60 - minutes) > 1 else "") + " to " + hours_str )
 
     return string
 def say_moon_phase() :
