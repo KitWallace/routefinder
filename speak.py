@@ -12,7 +12,7 @@ tracker_substitutes = {
      "%":"percent","mb": "millibars", "I2C" : " I squared C" ,"A2D" : "Analog to Digital"
      }
 
-def say (text,voice="en+m2",speed=175):
+def say (text,voice="en+m2",speed="175"):
     command = "echo '" + text + "'| espeak -v " + voice +" -m" + " -s " + str(speed)
     subprocess.call(command,shell=True)
 
