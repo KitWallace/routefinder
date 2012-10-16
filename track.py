@@ -46,7 +46,7 @@ class Track (object) :
    def as_kml(self) :
        distance = convert.value(self.length()[0],"Nm","km")
        kml = "<Placemark><name>" + self.name + "</name>"
-       kml += "<description>" + "Length along path " +  str(distance) + " km" + "</description>"
+       kml += "<description>" + "Length along path " +  str(round(distance,2)) + " km" + "</description>"
        kml += "<LineString><altitudeMode>absolute</altitudeMode><coordinates>"
        file = open("log/"+self.name+".txt","r")
        for line in file.readlines():
