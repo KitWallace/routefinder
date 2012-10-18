@@ -100,9 +100,11 @@ serial
 ### Route
 - route.py  defines  Route and Waypoint classes
 - start_route.py  starts the route object
+- start_route_follower.py  - route follower automatically steps from waypoint to waypoint as you poass each one
 
 #### objects 
--   route   Route object containg the current waypoints
+-  route   Route object containg the current waypoints
+-  follower_sw  Switch to turn the follower on or off
 
 ### Data Talker
 - start_talker.py  start up the talker
