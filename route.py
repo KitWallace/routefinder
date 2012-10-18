@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 import math
 import date_time,convert,geo
 from persistant import *
@@ -25,10 +25,10 @@ class Waypoint(Persistant) :
       return string
 
 
-   @property
-   def distance(self) :
+   def distance(self,units="Nm") :
       gps = get("gps") 
-      return gps.latlong.gc_polar_to(self.latlong).distance 
+      distance = gps.latlong.gc_polar_to(self.latlong).distance 
+      return convert.value(distance,"Nm",units)
 
    @property 
    def time_to_go(self) :

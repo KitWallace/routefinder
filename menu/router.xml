@@ -17,15 +17,15 @@
                      <item action='get("route").current_waypoint.text' />
                      <item action='get("route").current_waypoint.location' />
                </item>
-                  <item title="Next" action='"Next is "+ get("route").set_current(get("route").next).name'  next="waypoint" />
-                  <item title="Nearest" action='"Nearest is " + get("route").nearest.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").nearest).name' next="waypoint" />
-                  </item>
-                  <item title="Earliest" action='"Earliest is " + get("route").earliest.name'>
-                      <item action='"Current now " + get("route").set_current(get("route").earliest).name' next="waypoint" />
-                  </item>
+               <item title="Next" action='"Next is "+ get("route").set_current(get("route").next).name'  next="waypoint" />
+               <item title="Previous" action='"Previous is "+ get("route").set_current(get("route").previous).name'  next="waypoint" />
         </item>
-        <item title="Logger"  action='"Logging every " + str(get("log_rate").value) + " seconds is " + get("log_sw").status' >
+        <item  title="Follower"  action='"Route Follower is " + get("follow_sw").status' >
+            <item id="follow" title="Follow"  action='"Route follower is "+ get("follow_sw").status'>    
+               <item action='"Route follower is now " +get("follow_sw").toggle().status' next="follow"/>  
+            </item> 
+       </item>
+       <item title="Logger"  action='"Logging every " + str(get("log_rate").value) + " seconds is " + get("log_sw").status' >
             <item id="log" title="Logging"  action='"Logging is "+ get("log_sw").status'>    
                <item action='"Logging is now " +get("log_sw").toggle().status' next="log"/>  
             </item> 
